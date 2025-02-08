@@ -4,9 +4,10 @@ import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
 import { InjectedConnector } from 'wagmi/connectors/injected';
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
 import { publicProvider } from 'wagmi/providers/public';
-import { BSC_CHAIN_ID, BSC_RPC_URL, GREEN_CHAIN_ID, GREENFIELD_RPC_URL } from './env';
+import { BSC_CHAIN_ID, BSC_RPC_URL, GREEN_CHAIN_ID, GREENFIELD_RPC_URL, REACT_APP_ANKR_RPC_URL} from './env';
 
 console.log('GREENFIELD_RPC_URL', GREENFIELD_RPC_URL)
+console.log('REACT_APP_ANKR_RPC_URL', REACT_APP_ANKR_RPC_URL)
 
 const greenFieldChain: Chain = {
   id: GREEN_CHAIN_ID,
