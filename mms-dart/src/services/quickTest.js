@@ -4,7 +4,7 @@ const { mintToken } = require('./estate.js');
 
 const TESTNET_URL = "wss://s.altnet.rippletest.net:51233";
 
-async function test() {
+export const test = async () => {
     let client;
     try {
         // Create wallets
