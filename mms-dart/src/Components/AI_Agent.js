@@ -36,7 +36,7 @@ class Ai_Agent extends Component{
     if (_politicalSacle === "left"){
       prompt = political + "left leaning give it a score of 1, if it is right leaning give it a score of -1, if it is neutral give it a score of 0. ";
     } else if (_politicalSacle === "right"){
-      prompt = political + "right leaning give it a score of -1, if it is left leaning give it a score of 1, if it is neutral give it a score of 0. ";
+      prompt = political + "right leaning give it a score of 1, if it is left leaning give it a score of -1, if it is neutral give it a score of 0. ";
     }
     const impact = "if the articale is good give it a score of 5, if it is bad give it a score of -5, if it is neutral give it a score of 0. ";
     const development = "if the articale contains information about local developement give it a score of 5. if it does not give it a score of 0. Anything inbetween use the scale of 1-4. ";
