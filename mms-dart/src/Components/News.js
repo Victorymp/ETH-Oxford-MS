@@ -93,7 +93,9 @@ class News extends Component {
 
 
   render() {
-    const { sources, news, sourcesText, showNews } = this.state;
+    const { sources, news, sourcesText } = this.state;
+    const { showNews } = this.props; // Accept showNews as a prop
+
     return (
       <div>
         <h2>Sources Used</h2>
@@ -103,10 +105,6 @@ class News extends Component {
           ))}
         </ul>
 
-        <button onClick={this.toggleNewsVisibility}>
-          {showNews ? 'Hide News Articles' : 'Show News Articles'}
-        </button>
-
         {showNews && (
           <div>
             <h3>News Articles</h3>
@@ -114,6 +112,7 @@ class News extends Component {
               {news.length > 0 ? (
                 news.map((content, index) => (
                   <div key={index} className="news-article">
+                    <h4>Article {index+1}</h4>
                     <p>{content}</p>
                   </div>
                 ))
