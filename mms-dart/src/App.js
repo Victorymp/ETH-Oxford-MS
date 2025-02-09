@@ -120,7 +120,7 @@ function App() {
       </div>
       <div className='dashboard'>
         <div className="button-group">
-          <label htmlFor="mySlider">Select a value: </label>
+          <label htmlFor="mySlider">Select political Scale: </label>
           <input 
             type="range" 
             id="mySlider" 

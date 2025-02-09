@@ -108,7 +108,7 @@ class News extends Component {
         {showNews && (
           <div>
             <h3>News Articles</h3>
-            <div>
+            <div className='dashboard2'>
               {news.length > 0 ? (
                 news.map((content, index) => (
                   <div key={index} className="news-article">
