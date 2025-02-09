@@ -1,46 +1,71 @@
 import React, { Component } from 'react';
+import { getEncoding} from "js-tiktoken";
+import Ai_Agent from './AI_Agent';
 const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('ae926e3c2a764a1792bd7a50f3729742');
+const newsapi = new NewsAPI(process.env.REACT_APP_NEWS_API_KEY);
 const cheerio = require('cheerio');
+const tiktoken = require('tiktoken');
+const enc = getEncoding("cl100k_base");
+
 
 class News extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      news: []
+      news: [],
+      sources: {},
+      sourcesText: ''
     };
   }
 
   componentDidMount() {
-    const { _sources, _q, _category } = this.props;
-    const apiKey = 'ae926e3c2a764a1792bd7a50f3729742';
-    // Fetching top headlines from the newsapi    
-    // let newsSources = _sources.join(',');
-    // console.log(newsSources);
-    // newsapi.v2.topHeadlines({
-    //   sources: 'bbc-news,the-verge',
-    //   q: 'bitcoin',
-    //   category: 'business',
-    //   language: 'en',         
-    //   country: 'uk',          
-    // }).then(response => {
-    //   console.log(response);
-    //   this.setState({ articles: response.articles });
-    // }).catch(error => {
-    //   console.error('Error fetching the news:', error);
-    // });
-    const fetchNews = async () => {
-      const response = await fetch(`https://newsapi.org/v2/everything?q=apple&from=2025-02-07&to=2025-02-07&sortBy=popularity&apiKey=${apiKey}`);
-      const data = await response.json();
-      // console.log(data);
-      const articles = data.articles;
-      // console.log(articles);
-      const filteredArticles = articles.filter(article => _sources.includes(article.source.id));
-      console.log(filteredArticles);
-      this.getContent("https://www.bbc.co.uk/news/articles/c20g288yldko");
-      
-    };
+    const { _cities } = this.props;
+    const apiKey = process.env.REACT_APP_NEWS_API_KEY;
+    console.log(apiKey);
+    console.log('Cities: ', _cities.join(' OR '));
+    const Cities = _cities.join(' OR ');
 
+    const fetchNews = async () => {
+      const response = await fetch(`https://newsapi.org/v2/everything?q=uk AND (houses OR housing) AND (${Cities})&from=2025-01-08&to=2025-02-07&sortBy=popularity&searchIn=content&apiKey=${apiKey}`);
+      const data = await response.json();
+      const articles = data.articles;
+      var sourcesUsed= {};
+      var contentPromises = [];
+      const filteredArticles = articles.filter(article => article.source.name !== null);
+      // console.log(filteredArticles);
+      let count = 0;
+      let topcount = 10;
+      for (const currentArticle of filteredArticles) {
+        if (count === topcount) {
+          break;
+        }
+        count++;
+        console.log('URL:', currentArticle.url);
+        const content = this.getContent(currentArticle.url);
+        if (!content) {
+          continue;
+        }
+        contentPromises.push(content);
+        // get the source name
+        const name = currentArticle.source.name;
+        if (name in sourcesUsed) {
+          continue; 
+        }
+        if (sourcesUsed[name]) {
+          sourcesUsed[name]++;
+        } else {
+          sourcesUsed[name] = 1;
+        }
+      }
+      // get the content of the articles
+      const contentUsed = await Promise.all(contentPromises);
+      // turn into a array 
+      console.log(contentUsed[0]);
+      // Create a text representation of the sources
+      const _sourcesText = Object.entries(sourcesUsed).map(([source, count]) => `${source}: ${count}`).join(', ');
+      // return content used and sourcesUsed
+      this.setState({ news: contentUsed, sources: sourcesUsed, sourcesText: _sourcesText });      
+    };
     fetchNews();
   }
 
@@ -54,17 +79,26 @@ class News extends Component {
     // Extract the title of the article
     const title = $('title').text();
     const description = $('meta[name="description"]').attr('content');
-    const article = $('article').text();
+    const content = $('article').text();
   
-    console.log('Title:', title);
-    console.log('Description:', description);
-    console.log('Article:', article);
-    return { title, description };
+    const numberOfTokens = enc.encode(content).length;
+    // Get the first amount of token until the max token limit of 2048
+    const tokens = enc.encode(content).slice(0, 2048);
+    const text = enc.decode(tokens);
+    return text;
   }
+
   render() {
+    const { sources, news} = this.state;
     return (
       <div>
-        <h1>News</h1>
+        <h2>Sources Used</h2>
+        <ul>
+          {Object.entries(sources).map(([source, count]) => (
+            <li key={source}>{source}: {count}</li>
+          ))}
+        </ul>
+        <div id="text-data" text-data={news}></div>
       </div>
     );
   }
