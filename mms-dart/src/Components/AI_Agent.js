@@ -112,6 +112,7 @@ class Ai_Agent extends Component{
         {isLoaded ? (
           <div>
             <p>Total Score for your portfolio: {this.state.sum}/110</p>
+            {sum > 55? <p>We recommend you keep your investment!</p>: <p>This may not be the best place to invest!</p>}
           </div>
         ) : (
           <p>Loading...</p>
