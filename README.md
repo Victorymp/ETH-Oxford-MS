@@ -42,12 +42,15 @@ Implements a secure investment relationship system using XRP's trustline feature
 ```bash
 npm install
 ```
-3. Configure environment variables:
+4. Add .env into MMS dart with the required API keys
+5. Configure environment variables:
 ```bash
 XRPL_NETWORK=testnet
-NEWS_API_KEY=your_key
+NEWS_API_KEY=[your_key](https://site.goperigon.com/data-solutions/news-api)
+OpenAI=https://openai.com/api/
+
 ```
-4. Start the development server:
+6. Start the development server:
 ```bash
 npm start
 ```
@@ -89,12 +92,10 @@ This project aims to win the following bounties at ETH Oxford 2025:
 
 - XRP Integration Prize: Creating innovative investment channels using XRPL by leveraging AI
 
-## 📄 License
-
-[MIT License](LICENSE)
 
 ## 🙏 Acknowledgments
 
 - ETH Oxford Hackathon organizers
 - XRPL documentation and community
-- News API providers
+- Perigon API providers
+- OpenAI API
