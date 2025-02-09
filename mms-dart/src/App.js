@@ -21,6 +21,7 @@ function App() {
   const [ArticalArray, setArticalArray] = useState([]);
   // New state for XRP testing status
   const [isTestRunning, setIsTestRunning] = useState(false);
+  const [showNews, setShowNews] = useState(true); // New state for toggling news visibility
 
   // Dropdown functionality for city selection
   const droneDropdown = () => {
@@ -75,6 +76,7 @@ function App() {
     newsArticles.forEach((article) => {
       articleArray.push(article.textContent);
     });
+    
     console.log('Article array length: ', articleArray.length);
     setArticalArray(articleArray);
     setStartDesirability(true);
@@ -102,6 +104,11 @@ function App() {
     } finally {
       setIsTestRunning(false);
     }
+  };
+
+  // New handler for toggling news visibility
+  const handleToggleNews = () => {
+    setShowNews(!showNews);
   };
 
   return (
@@ -160,10 +167,21 @@ function App() {
           >
             {isTestRunning ? 'Setting Up Investment Channel...' : 'Setup Investemnt Channel'}
           </button>
-        </div>
 
+          <button className="btn" onClick={handleToggleNews}>
+            {showNews ? 'Hide News Articles' : 'Show News Articles'}
+          </button>
+        </div>
         <div>
-          {startExtraction && <News _cities={chosenCities} />}
+          <h1>Chosen City for portfolio analysis</h1>
+          <ul>
+            {chosenCities.map((city, index) => (
+              <li key={index}>{city}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          {startExtraction && <News _cities={chosenCities} showNews={showNews} />}
         </div>
         <div>
           {startDesirability && 

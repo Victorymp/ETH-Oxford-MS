@@ -93,7 +93,9 @@ class News extends Component {
 
 
   render() {
-    const { sources, news, sourcesText, showNews } = this.state;
+    const { sources, news, sourcesText } = this.state;
+    const { showNews } = this.props; // Accept showNews as a prop
+
     return (
       <div>
         <h2>Sources Used</h2>
@@ -102,10 +104,6 @@ class News extends Component {
             <li key={source}>{source}: {count}</li>
           ))}
         </ul>
-
-        <button onClick={this.toggleNewsVisibility}>
-          {showNews ? 'Hide News Articles' : 'Show News Articles'}
-        </button>
 
         {showNews && (
           <div>
