@@ -22,6 +22,7 @@ function App() {
   // New state for XRP testing status
   const [isTestRunning, setIsTestRunning] = useState(false);
   const [showNews, setShowNews] = useState(true); // New state for toggling news visibility
+  let cityChosen = chosenCities.length > 0; // New state for city selection
 
   // Dropdown functionality for city selection
   const droneDropdown = () => {
@@ -50,6 +51,7 @@ function App() {
     const updatedCities = [...chosenCities, city];
     setChosenCities(updatedCities);
     console.log('Chosen cities: ', updatedCities);
+    cityChosen = true;
   }
 
   // Handler for starting news extraction
@@ -172,14 +174,14 @@ function App() {
             {showNews ? 'Hide News Articles' : 'Show News Articles'}
           </button>
         </div>
-        <div>
+        {cityChosen && <div>
           <h1>Chosen City for portfolio analysis</h1>
           <ul>
             {chosenCities.map((city, index) => (
               <li key={index}>{city}</li>
             ))}
           </ul>
-        </div>
+        </div>}
         <div>
           {startExtraction && <News _cities={chosenCities} showNews={showNews} />}
         </div>

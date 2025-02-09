@@ -112,6 +112,7 @@ class News extends Component {
               {news.length > 0 ? (
                 news.map((content, index) => (
                   <div key={index} className="news-article">
+                    <h4>Article {index+1}</h4>
                     <p>{content}</p>
                   </div>
                 ))
