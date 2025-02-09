@@ -100,6 +100,7 @@ function App() {
     try {
       await test(); // Execute the XRP test function
       console.log('XRP test completed successfully');
+      alert('Trustline and token completed successfully');
     } catch (error) {
       console.error('XRP test failed:', error);
       alert('XRP test encountered an error. Check console for details.');
