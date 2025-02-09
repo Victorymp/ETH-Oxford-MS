@@ -1,70 +1,113 @@
-# Getting Started with Create React App
+# Real Estate AI Portfolio Manager REAI powered by MMS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A sophisticated real estate AI agent for easy portfolio management. Leverages AI for market analysis according to the top news titles in a chosen location, XRP for investment channels. Built for the ETH Oxford Hackathon 2025.
 
-## Available Scripts
+## 🏗️ Project Overview
 
-In the project directory, you can run:
+This platform revolutionizes real estate investment by combining:
+- AI-powered market analysis using real-time news data
+- Secure investment channels through XRP's trustline system
+- Interactive city-based property analysis
+- Political sentiment analysis for market insights
 
-### `npm start`
+## 🚀 Key Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### News Analysis & AI Agent
+The system aggregates news from multiple sources (BBC, CNN, Guardian) for selected UK cities and processes them through our AI agent to:
+- Extract market trends and property valuations
+- Analyze political impact on real estate markets
+- Generate investment recommendations
+- Calculate area desirability scores
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Ripple Investment Channel
+Implements a secure investment relationship system using XRP's trustline feature:
+- Creates trustlines between investors and investment firms
+- Manages investment limits and token issuance
+- Processes both RLUSD and custom token payments
 
-### `npm test`
+## 🛠️ Technical Architecture
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend Components
+- Location selector with search functionality
+- Political scale analyzer
+- News extraction system
+- AI analysis dashboard
+- XRP investment channel setup interface
 
-### `npm run build`
+### Backend Services
+```
+src/
+├── services/
+│   ├── trustline/          # XRP trustline management
+│   ├── ai/                 # AI recommendation engine
+│   ├── payment/            # Payment processing
+│   └── storage/            # BNB Greenfield integration
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🔧 Setup & Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository
+2. Install dependencies:
+```bash
+npm install
+```
+3. Configure environment variables:
+```bash
+XRPL_NETWORK=testnet
+NEWS_API_KEY=your_key
+```
+4. Start the development server:
+```bash
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🎮 Usage Guide
 
-### `npm run eject`
+1. **City Selection**
+   - Use the Location dropdown to select target cities
+   - Filter cities using the search functionality
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. **News Analysis**
+   - Click "Start Extraction" to gather news data
+   - Articles are processed in real-time
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **Market Analysis**
+   - Adjust the political scale slider to filter analysis
+   - Click "Desirability Analysis" to generate AI insights
+   - View comprehensive market reports
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. **Investment Setup**
+   - Agent clicks "Setup Investment Channel" to create XRP trustlines using RLUSD
+   - Setting up the investment both sets up the payment method in the trustline manager and mints the estate token of the AI agents output 
+   - Monitor transaction status in real-time
+   - Verify trustline creation on the ripple ledeger
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Marston Microsystems Team
+Victory Mpokosa : 
+- https://github.com/Victorymp
+- https://www.linkedin.com/in/victory-mpokosa/
 
-## Learn More
+Yankho Mpokosa : 
+- https://github.com/yankhono1
+- https://www.linkedin.com/in/yankho-m/
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🤝 Contributing
 
-### Code Splitting
+Contributions are welcome! Please read our contributing guidelines and submit pull requests to our repository.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🏆 Hackathon Notes
 
-### Analyzing the Bundle Size
+This project aims to win the following bounties at ETH Oxford 2025:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- XRP Integration Prize: Creating innovative investment channels using XRPL by leveraging AI
 
-### Making a Progressive Web App
+## 📄 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+[MIT License](LICENSE)
 
-### Advanced Configuration
+## 🙏 Acknowledgments
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- ETH Oxford Hackathon organizers
+- XRPL documentation and community
+- News API providers
