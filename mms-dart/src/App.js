@@ -18,7 +18,7 @@ function App() {
   const [sliderValue, setSliderValue] = useState(0.5);
   const [politicalScale, setPoliticalScale] = useState('left');
   const [startDesirability, setStartDesirability] = useState(false);
-  const [ArticalArray, setArticalArray] = useState([]);
+  const [ArticalArray, setArticalArray] = useState([]);a
   // New state for XRP testing status
   const [isTestRunning, setIsTestRunning] = useState(false);
   const [showNews, setShowNews] = useState(true); // New state for toggling news visibility
