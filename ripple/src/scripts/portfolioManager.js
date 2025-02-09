@@ -47,30 +47,6 @@ class RealEstatePortfolioManager {
             marketTrends: {}
         };
     }
-
-    // BNB Greenfield Integration
-    async storePortfolioData(portfolioData) {
-        // TODO: Implement BNB Greenfield storage
-        // This will store portfolio analytics and documents
-    }
-
-    // Torus Network Integration
-    async setupUserAuthentication() {
-        // TODO: Implement Torus authentication
-        // This will handle user login and wallet creation
-    }
-
-    // Flare Integration
-    async getPriceFeeds() {
-        // TODO: Implement Flare price oracle integration
-        // This will get real estate market data
-    }
-
-    // Flock Integration
-    async setupDAOGovernance() {
-        // TODO: Implement Flock DAO governance
-        // This will handle community voting on investment decisions
-    }
 }
 
 // Investment Trustline Manager (from your existing code)

@@ -1,6 +1,6 @@
 const xrpl = require("xrpl");
-const TrustlineManager = require('../services/trustline/TrustlineManager');
-const { mintToken } = require('../../token/estate');
+const TrustlineManager = require('./TrustlineManager.js');
+const { mintToken } = require('./estate.js');
 
 const TESTNET_URL = "wss://s.altnet.rippletest.net:51233";
 
