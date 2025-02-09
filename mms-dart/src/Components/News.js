@@ -14,24 +14,24 @@ class News extends Component {
     this.state = {
       news: [],
       sources: {},
-      sourcesText: ''
+      sourcesText: '',
+      showNews: false
     };
   }
 
   componentDidMount() {
     const { _cities } = this.props;
-    const apiKey = process.env.REACT_APP_NEWS_API_KEY;
-    console.log(apiKey);
-    console.log('Cities: ', _cities.join(' OR '));
+    const apiKey = process.env.REACT_APP_PERIGON_API_KEY;
     const Cities = _cities.join(' OR ');
 
     const fetchNews = async () => {
-      const response = await fetch(`https://newsapi.org/v2/everything?q=uk AND (houses OR housing) AND (${Cities})&from=2025-01-08&to=2025-02-07&sortBy=popularity&searchIn=content&apiKey=${apiKey}`);
+      // const response = await fetch(`https://newsapi.org/v2/everything?q=uk AND (houses OR housing) AND (${Cities})&from=2025-01-08&to=2025-02-07&sortBy=popularity&searchIn=content&apiKey=${apiKey}`);
+      const response = await fetch(`https://api.goperigon.com/v1/all?content=uk AND (houses OR housing) AND (${Cities})&from=2025-01-08&to=2025-02-07&apiKey=${apiKey}`);
       const data = await response.json();
       const articles = data.articles;
       var sourcesUsed= {};
       var contentPromises = [];
-      const filteredArticles = articles.filter(article => article.source.name !== null);
+      const filteredArticles = articles.filter(article => article.source.domain !== null);
       // console.log(filteredArticles);
       let count = 0;
       let topcount = 10;
@@ -47,7 +47,7 @@ class News extends Component {
         }
         contentPromises.push(content);
         // get the source name
-        const name = currentArticle.source.name;
+        const name = currentArticle.source.domain;
         if (name in sourcesUsed) {
           continue; 
         }
@@ -60,7 +60,6 @@ class News extends Component {
       // get the content of the articles
       const contentUsed = await Promise.all(contentPromises);
       // turn into a array 
-      console.log(contentUsed[0]);
       // Create a text representation of the sources
       const _sourcesText = Object.entries(sourcesUsed).map(([source, count]) => `${source}: ${count}`).join(', ');
       // return content used and sourcesUsed
@@ -88,8 +87,13 @@ class News extends Component {
     return text;
   }
 
+  toggleNewsVisibility = () => {
+    this.setState(prevState => ({ showNews: !prevState.showNews }));
+  }
+
+
   render() {
-    const { sources, news} = this.state;
+    const { sources, news, sourcesText, showNews } = this.state;
     return (
       <div>
         <h2>Sources Used</h2>
@@ -98,6 +102,27 @@ class News extends Component {
             <li key={source}>{source}: {count}</li>
           ))}
         </ul>
+
+        <button onClick={this.toggleNewsVisibility}>
+          {showNews ? 'Hide News Articles' : 'Show News Articles'}
+        </button>
+
+        {showNews && (
+          <div>
+            <h3>News Articles</h3>
+            <div>
+              {news.length > 0 ? (
+                news.map((content, index) => (
+                  <div key={index} className="news-article">
+                    <p>{content}</p>
+                  </div>
+                ))
+              ) : (
+                <p>Loading news articles...</p>
+              )}
+            </div>
+          </div>
+        )}
         <div id="text-data" text-data={news}></div>
       </div>
     );

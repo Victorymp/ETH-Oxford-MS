@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^7.1.0",
+    "axios": "^1.7.9",
     "cheerio": "^1.0.0",
     "cors-anywhere": "^0.4.4",
     "cra-template": "1.2.0",

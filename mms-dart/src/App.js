@@ -64,14 +64,19 @@ function App() {
 
   // Handler for AI agent analysis
   const handleAgentClick = () => {
-    const text_div = document.getElementById('text-data');
-    const source_text = text_div.getAttribute('text-data');
-    if (source_text === null) {
+    const newArticleContainer = document.getElementById('new-article');
+    const newsArticles = document.querySelectorAll('.news-article p');
+    if (newsArticles === null) {
       console.log('No text data found');
       return;
     }
     console.log('AI Agent clicked');
-    setArticalArray(source_text);
+    const articleArray = [];
+    newsArticles.forEach((article) => {
+      articleArray.push(article.textContent);
+    });
+    console.log('Article array length: ', articleArray.length);
+    setArticalArray(articleArray);
     setStartDesirability(true);
   }
 
