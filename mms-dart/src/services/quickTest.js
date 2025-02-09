@@ -19,10 +19,10 @@ export const test = async () => {
         console.log("\nFunding the wallets...");
         const fundResult = await client.fundWallet({ wallet: investmentFirm });
         const investorFund = await client.fundWallet({ wallet: investor });
-        alert('Investor Wallet Funded. Addess: ', investorFund);
         
         console.log(`Investment Firm Address: ${investmentFirm.address}`);
         console.log(`Investor Address: ${investor.address}`);
+        alert('Investor Wallet Funded. Addess: ', investor.address);
 
         // Ensure the wallets are funded
         const investmentFirmBalance = await client.getXrpBalance(investmentFirm.address);
